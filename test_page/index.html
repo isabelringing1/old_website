@@ -65,8 +65,8 @@
 		function updateRec() {
 			$("#rec").text(recognition ? "Stop" : "Speak");
 		}
-		function clearField(input) {
-			 input.value = "";
+		function clearField() {
+			 $("#input").val() = "";
 		};
 		function send() {
 			var text = $("#input").val();
@@ -90,7 +90,7 @@
 		}
 		function setResponse(val) {
 			$("#response").text(val);
-			clearField("#input");
+			clearField();
 		}
 	</script>
 	<style type="text/css">
