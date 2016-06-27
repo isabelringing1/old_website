@@ -6,7 +6,7 @@
 	<script type="text/javascript">
 		var accessToken = "2958bae3e0794fe5a0577d417cfc18bb";
 		var baseUrl = "https://api.api.ai/v1/";
-		$(document).ready(function() {
+	$(document).ready(function() {
 			$("#input").keypress(function(event) {
 				if (event.which == 13) {
 					event.preventDefault();
@@ -94,7 +94,7 @@
 <body>
 	<div>
 		<input id="input" type="text"> <button id="rec">Send</button>
-		<br>Type START to begin.<br> <textarea id="Response" cols="40" rows="20"></textarea>
+		<br>Type START to begin<br> <textarea id="response" cols="40" rows="20"></textarea>
 	</div>
 </body>
 </html>
