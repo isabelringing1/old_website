@@ -31,7 +31,7 @@
 				updateRec();
 			};
 			recognition.onresult = function(event) {
-				var text = "";
+				
 			    for (var i = event.resultIndex; i < event.results.length; ++i) {
 			    	text += event.results[i][0].transcript;
 			    }
@@ -83,7 +83,7 @@
 				},
 				data: JSON.stringify({ q: text, lang: "en" }),
 				success: function(data) {
-					setResponse(data.result.speech + "\n\n" + "Your last answer: " + text);
+					setResponse(data.result.speech + "\n\n" + text);
 				},
 				error: function() {
 					setResponse("Internal Server Error");
@@ -93,7 +93,7 @@
 		}
 		
 		function getLast(){
-			text = document.getElementById("input").value + text;
+			text = document.getElementById("input").value + "/n/n" + text;
 		}
 		
 		function setResponse(val) {
