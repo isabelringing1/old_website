@@ -20,8 +20,7 @@
 			$("#button").click(function(event){
 				event.preventDefault();
 				getLast();
-				send();
-				setResponse(text);	
+				send();	
 			});
 			
 		});
@@ -84,7 +83,7 @@
 				},
 				data: JSON.stringify({ q: text, lang: "en" }),
 				success: function(data) {
-					setResponse(data.result.speech + prev);
+					setResponse(data.result.speech + text);
 				},
 				error: function() {
 					setResponse("Internal Server Error");
