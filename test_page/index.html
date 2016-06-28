@@ -102,12 +102,24 @@
 		button { width: 50px; }
 		textarea { width: 100%; }
 	</style>
+	#myDIV {
+    	height: 250px;
+    	width: 250px;
+    	overflow: auto;
+	}
 </head>
 <body>
 	<div>
 		Welcome to SpaceHQ's Janitorial and Cleaning Chatbot! Type START to begin. <br>
 		<input id="input" type="text"> <button id="button">Send</button>
 		<textarea id="response" cols="40" rows="10"></textarea>
+		<div id="myDIV" onscroll="myFunction()">
+  		<div id="content">Scroll inside me!</div>
+		</div>
+
+<p id="demo"></p>
 	</div>
 </body>
 </html>
+
+
