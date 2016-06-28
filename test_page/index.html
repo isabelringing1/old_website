@@ -81,8 +81,8 @@
 				data: JSON.stringify({ q: text, lang: "en" }),
 				success: function(data) {
 					var obj = JSON.parse(data);
-					setResponse(obj.result.fulfillment.speech + "!");
-					//setResponse(JSON.stringify(data, undefined, 2));
+					//setResponse(obj.result.fulfillment.speech + "!");
+					setResponse(JSON.stringify(data, undefined, 2));
 				},
 				error: function() {
 					setResponse("Internal Server Error");
