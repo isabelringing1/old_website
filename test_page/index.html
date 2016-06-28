@@ -80,7 +80,7 @@
 				},
 				data: JSON.stringify({ q: text, lang: "en" }),
 				success: function(data) {
-					var obj = JSON.parse(data);
+					//var obj = JSON.parse(data);
 					//setResponse(obj.result.fulfillment.speech + "!");
 					setResponse(JSON.stringify(data, undefined, 2));
 				},
