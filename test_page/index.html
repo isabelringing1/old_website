@@ -85,7 +85,7 @@
 				data: JSON.stringify({ q: text, lang: "en" }),
 				success: function(data) {
 					getLast();
-					setResponse(data.result.speech + "\n\n" + txt);
+					setResponse(data.result.speech + "\n" + txt);
 				},
 				error: function() {
 					setResponse("Internal Server Error");
@@ -93,9 +93,17 @@
 			});
 			setResponse("Loading...");
 		}
-		
+		var x = 0;
+		var thing = "";
 		function getLast(){
-			txt = document.getElementById("input").value + "\n\n" + txt;
+			if (x%2 == 1){
+				thing = "bot ";		
+			}
+			else{
+				thing = "you: "
+			}
+			txt = document.getElementById("input").value + "\n" + thing + txt;
+			x = x + 1;
 		}
 		
 		function setResponse(val) {
