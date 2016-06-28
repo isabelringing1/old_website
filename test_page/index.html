@@ -81,7 +81,7 @@
 				data: JSON.stringify({ q: text, lang: "en" }),
 				success: function(data) {
 					//var obj = JSON.parse(data);
-					setResponse(JSON.stringify(data.result.fulfillment.speech))
+					setResponse(data.result.fulfillment.speech)
 					//setResponse(JSON.stringify(data, undefined, 2));
 				},
 				error: function() {
