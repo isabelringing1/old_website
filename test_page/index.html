@@ -68,6 +68,8 @@
 		function clearField() {
 			 $("#input").val("");
 		};
+		
+		var prev = "";
 		function send() {
 			var text = $("#input").val();
 			$.ajax({
@@ -80,9 +82,8 @@
 				},
 				data: JSON.stringify({ q: text, lang: "en" }),
 				success: function(data) {
-					//var obj = JSON.parse(data);
-					setResponse(data.result.speech);
-					//setResponse(JSON.stringify(data, undefined, 2));
+					setLast();
+					setResponse(data.result.speech + <br>prev);
 				},
 				error: function() {
 					setResponse("Internal Server Error");
@@ -90,6 +91,13 @@
 			});
 			setResponse("Loading...");
 		}
+		
+		function setLast(){
+			prev = prev + document.getElementByID("input").value;	
+		}
+		}
+			
+		
 		function setResponse(val) {
 			$("#response").text(val);
 			clearField();
@@ -119,7 +127,7 @@
 <body>
 	<div>
 		Welcome to SpaceHQ's Janitorial and Cleaning Chatbot! Type START to begin. <br>
-		<input id="input" type="text"> <button id="button">Send</button><br>
+		<input id="input" type="text"> <button id="button">Send</button><br><br>
 		<textarea id="response" cols="40" rows="10"></textarea>
 		
   		
