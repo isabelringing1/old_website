@@ -93,16 +93,8 @@
 			});
 			setResponse("Loading...");
 		}
-		var x = 0;
-		var thing = "";
 		function getLast(){
-			if (x%2 == 1){
-				thing = "bot ";		
-			}
-			else{
-				thing = "you: "
-			}
-			txt = document.getElementById("input").value + "\n" + thing + txt;
+			txt = "Bot: " + document.getElementById("response").value + "\nYou: " + document.getElementById("input").value + "\n" + txt;
 			x = x + 1;
 		}
 		
