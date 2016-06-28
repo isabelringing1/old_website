@@ -6,6 +6,7 @@
 	<script type="text/javascript">
 		var accessToken = "2958bae3e0794fe5a0577d417cfc18bb";
 		var baseUrl = "https://api.api.ai/v1/";
+		var text = "";
 	$(document).ready(function() {
 			$("#input").keypress(function(event) {
 				if (event.which == 13) {
@@ -18,8 +19,9 @@
 			});
 			$("#button").click(function(event){
 				event.preventDefault();
+				getLast();
 				send();
-					
+				setResponse(text);	
 			});
 			
 		});
@@ -91,7 +93,9 @@
 			setResponse("Loading...");
 		}
 		
-			
+		function getLast(){
+			text = document.getElementById("input").value;
+		}
 		
 		function setResponse(val) {
 			$("#response").text(val);
