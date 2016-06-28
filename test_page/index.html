@@ -83,7 +83,7 @@
 				},
 				data: JSON.stringify({ q: text, lang: "en" }),
 				success: function(data) {
-					setResponse(data.result.speech + <br> text);
+					setResponse(data.result.speech + "\n\n" + "Your last answer: " + text);
 				},
 				error: function() {
 					setResponse("Internal Server Error");
