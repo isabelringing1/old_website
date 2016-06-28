@@ -6,7 +6,7 @@
 	<script type="text/javascript">
 		var accessToken = "2958bae3e0794fe5a0577d417cfc18bb";
 		var baseUrl = "https://api.api.ai/v1/";
-		var text = "";
+		var txt = "";
 	$(document).ready(function() {
 			$("#input").keypress(function(event) {
 				if (event.which == 13) {
@@ -70,7 +70,7 @@
 			 $("#input").val("");
 		};
 		
-		var prev = "";
+		
 		function send() {
 			var text = $("#input").val();
 			$.ajax({
@@ -83,7 +83,7 @@
 				},
 				data: JSON.stringify({ q: text, lang: "en" }),
 				success: function(data) {
-					setResponse(data.result.speech + "\n\n" + text);
+					setResponse(data.result.speech + "\n\n" + txt);
 				},
 				error: function() {
 					setResponse("Internal Server Error");
@@ -93,7 +93,7 @@
 		}
 		
 		function getLast(){
-			text = document.getElementById("input").value + "/n/n" + text;
+			txt = document.getElementById("input").value + "/n/n" + txt;
 		}
 		
 		function setResponse(val) {
