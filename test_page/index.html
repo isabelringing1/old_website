@@ -11,7 +11,6 @@
 			$("#input").keypress(function(event) {
 				if (event.which == 13) {
 					event.preventDefault();
-					getLast();
 					send();
 				}
 			});
@@ -20,7 +19,6 @@
 			});
 			$("#button").click(function(event){
 				event.preventDefault();
-				getLast();
 				send();	
 			});
 			
@@ -84,9 +82,9 @@
 				},
 				data: JSON.stringify({ q: text, lang: "en" }),
 				success: function(data) {
-					dta = data.result.speech;
 					getLast();
-					setResponse("Bot: " + data.result.speech + "\n\n" + txt);
+					dta = data.result.speech;
+					setResponse("Bot: " + dta + "\n\n" + txt);
 				},
 				error: function() {
 					setResponse("Internal Server Error");
