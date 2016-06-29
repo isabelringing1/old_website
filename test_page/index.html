@@ -8,6 +8,7 @@
 		var baseUrl = "https://api.api.ai/v1/";
 		var txt = "";
 	$(document).ready(function() {
+			setResponse("Welcome to SpaceHQ!");
 			$("#input").keypress(function(event) {
 				if (event.which == 13) {
 					event.preventDefault();
@@ -69,7 +70,7 @@
 			 $("#input").val("");
 		};
 		
-		var dta = "";
+		var dta = "Welcome to SpaceHQ!";
 		function send() {
 			var text = $("#input").val();
 			$.ajax({
