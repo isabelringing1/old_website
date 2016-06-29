@@ -85,7 +85,7 @@
 				data: JSON.stringify({ q: text, lang: "en" }),
 				success: function(data) {
 					getLast();
-					setResponse(data.result.speech + "\n" + txt);
+					setResponse("bot: " + data.result.speech + "\n\n" + txt);
 				},
 				error: function() {
 					setResponse("Internal Server Error");
@@ -93,7 +93,7 @@
 			});
 		}
 		function getLast(){
-			txt = "Bot: " + document.getElementById("response").value + "\nYou: " + document.getElementById("input").value + "\n" + txt;
+			txt = "\nYou: " + document.getElementById("input").value + "\n" + txt;
 		}
 		
 		function setResponse(val) {
