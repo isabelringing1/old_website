@@ -71,7 +71,7 @@
 			 $("#input").val("");
 		};
 		
-		
+		var dta = "";
 		function send() {
 			var text = $("#input").val();
 			$.ajax({
@@ -84,6 +84,7 @@
 				},
 				data: JSON.stringify({ q: text, lang: "en" }),
 				success: function(data) {
+					dta = data.result.speech;
 					getLast();
 					setResponse("Bot: " + data.result.speech + "\n\n" + txt);
 				},
@@ -93,7 +94,7 @@
 			});
 		}
 		function getLast(){
-			txt = "Bot: " + data.result.speech + "\nYou: " + document.getElementById("input").value + "\n" + txt;
+			txt = "Bot: " + dta + "\nYou: " + document.getElementById("input").value + "\n" + txt;
 		}
 		
 		function setResponse(val) {
