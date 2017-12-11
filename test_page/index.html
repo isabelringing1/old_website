@@ -1,138 +1,32 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<title>Test Bot</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script type="text/javascript">
-		var accessToken = "cdd3eb9802584a0cb977cccfa4036db1";
-		var baseUrl = "https://api.api.ai/v1/";
-		var txt = "";
-	$(document).ready(function() {
-			setResponse("Bot: Welcome to SpaceHQ's Large Project Bot! Type START to begin.");
-			$("#input").keypress(function(event) {
-				if (event.which == 13) {
-					event.preventDefault();
-					send();
-				}
-			});
-			$("#rec").click(function(event) {
-				switchRecognition();
-			});
-			$("#button").click(function(event){
-				event.preventDefault();
-				send();	
-			});
-			
-		});
-		var recognition;
-		function startRecognition() {
-			recognition = new webkitSpeechRecognition();
-			recognition.onstart = function(event) {
-				updateRec();
-			};
-			recognition.onresult = function(event) {
-				
-			    for (var i = event.resultIndex; i < event.results.length; ++i) {
-			    	text += event.results[i][0].transcript;
-			    }
-			    setInput(text);
-				stopRecognition();
-			};
-			recognition.onend = function() {
-				stopRecognition();
-			};
-			recognition.lang = "en-US";
-			recognition.start();
-		}
-	
-		function stopRecognition() {
-			if (recognition) {
-				recognition.stop();
-				recognition = null;
-			}
-			updateRec();
-		}
-		function switchRecognition() {
-			if (recognition) {
-				stopRecognition();
-			} else {
-				startRecognition();
-			}
-		}
-		function setInput(text) {
-			$("#input").val(text);
-			send();
-		}
-		function updateRec() {
-			$("#rec").text(recognition ? "Stop" : "Speak");
-		}
-		function clearField() {
-			 $("#input").val("");
-		};
-		
-		var dta = "Welcome to SpaceHQ's Large Project Bot! Type START to begin.";
-		function send() {
-			var text = $("#input").val();
-			$.ajax({
-				type: "POST",
-				url: baseUrl + "query/",
-				contentType: "application/json; charset=utf-8",
-				dataType: "json",
-				headers: {
-					"Authorization": "Bearer " + accessToken
-				},
-				data: JSON.stringify({ q: text, lang: "en" }),
-				success: function(data) {
-					getLast();
-					dta = data.result.speech;
-					setResponse("Bot: " + dta + "\n\n" + txt);
-				},
-				error: function() {
-					setResponse("Internal Server Error");
-				}
-			});
-		}
-		function getLast(){
-			txt = "You: " + document.getElementById("input").value + "\nBot: " + dta + "\n" + txt;
-		}
-		
-		function setResponse(val) {
-			$("#response").text(val);
-			clearField();
-		}
-	</script>
-	<style type="text/css">
-		body { width: 500px; margin: 0 auto; text-align: center; margin-top: 20px; }
-		div {  position: absolute; }
-		input { width: 400px; }
-		button { width: 50px; }
-		textarea { width: 100%; }
-	</style>
-	<style>
-		#myDIV {
-    			height: 250px;
-    			width: 500 px;
-    			overflow: auto;
-			}
-			
-		#content {
-			 height: 800px;
-    			width: 2000px;
-			 background-color: blue;
-			}
-	</style>
+<!-- Load the Paper.js library -->
+<script type="text/javascript" src="js/paper.js"></script>
+<!-- Define inlined PaperScript associate it with myCanvas -->
+<script type="text/paperscript" canvas="myCanvas">
+	var squarePath = new Path.Rectangle(new Point(20, 20), new Size(20, 20));
+	squarePath.fillColor = 'aquamarine';
+	var squareSymbol = new Symbol(squarePath);
+
+	// lets place some squares using symbols, and rotate each instance slightly
+	for (var i = 0; i < 20; i++) {
+	    for (var j = 0; j <20; j++){
+		var placedSymbol = squareSymbol.place(new Point(30 + (i * 40), 50+j*40));
+		 placedSymbol.rotate(i * 10); // operation on the instance
+	    }
+	}
+
+	function onFrame(event) {
+	 // Add 1 degree to the hue
+	 // of the symbol definition's fillColor:
+	 squareSymbol.definition.fillColor.hue += 1;
+	 // rotate
+	 squareSymbol.definition.rotate(0.2);
+	}  
+</script>
 </head>
 <body>
-	<div>
-		
-		<input id="input" type="text"> <button id="button">Send</button><br><br>
-		<textarea id="response" cols="40" rows="10"></textarea>
-		
-  		
-
-<p id="demo"></p>
-	</div>
+	<canvas id="myCanvas" resize></canvas>
 </body>
 </html>
-
-
