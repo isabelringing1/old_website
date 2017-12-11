@@ -53,7 +53,7 @@ canvas[resize] {
 <script>
 $(document).ready(function() {
 	try {
-		$('body').ripples({
+		$('canvas').ripples({
 			resolution: 512,
 			dropRadius: 20, //px
 			perturbance: 0.04,
@@ -64,7 +64,7 @@ $(document).ready(function() {
 	}
 	// Automatic drops
 	setInterval(function() {
-		var $el = $('document');
+		var $el = $('body');
 		var x = Math.random() * $el.outerWidth();
 		var y = Math.random() * $el.outerHeight();
 		var dropRadius = 20;
