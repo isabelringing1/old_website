@@ -5,14 +5,14 @@
 <script type="text/javascript" src="js/paper-full.js"></script>
 <!-- Define inlined PaperScript associate it with myCanvas -->
 <script type="text/paperscript" canvas="myCanvas">
-	var squarePath = new Path.Rectangle(new Point(20, 20), new Size(50, 50));
+	var squarePath = new Path.Rectangle(new Point(20, 20), new Size(20, 20));
 	squarePath.fillColor = 'aquamarine';
 	var squareSymbol = new Symbol(squarePath);
 
 	// lets place some squares using symbols, and rotate each instance slightly
-	for (var i = 0; i < 14; i++) {
-	    for (var j = 0; j <10; j++){
-		var placedSymbol = squareSymbol.place(new Point(70 + (i * 100), 50+j*100));
+	for (var i = 0; i < 30; i++) {
+	    for (var j = 0; j <30; j++){
+		var placedSymbol = squareSymbol.place(new Point (30 + (i * 40), 50+j*40));
 		 placedSymbol.rotate(i * j * 10); // operation on the instance
 	    }
 	}
