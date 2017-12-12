@@ -25,9 +25,11 @@
 </script>
 </head>
 <body>
-
 </body>
-<canvas id="myCanvas" resize = "true" position = absolute;></canvas>
+	
+<div id="backgrounddiv" style="position:absolute; top:0; left:0; z-index:-1">
+  <canvas id="myCanvas" resize style='background:4D9BCC'></canvas>
+</div>
 	
 <style type="text/css">
 html,
@@ -37,7 +39,6 @@ body {
     background-image: url(bg.jpg);
     background-size: cover;
     z-index: -2;
-    opacity: .5;
     height: 100%;
 }
 /* Scale canvas with resize attribute to full size */
