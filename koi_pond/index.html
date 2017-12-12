@@ -47,6 +47,8 @@ canvas [resize] {
     height: 100%;
     position: absolute;
 }
+div{
+	}
 </style>	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="js/ripples.js"></script>
@@ -58,7 +60,7 @@ $(document).ready(function() {
 			dropRadius: 20, //px
 			perturbance: 0.04,
 		});
-		$('div').ripples({
+		$('backgrounddiv').ripples({
 			resolution: 512,
 			dropRadius: 20, //px
 			perturbance: 0.04,
