@@ -29,12 +29,6 @@
 <body>
 
 <canvas id="myCanvas" resize = "true"></canvas>
-<img src="grey.jpg" style="position: absolute; 
-              left: 0px; 
-              top:0px;
-              z-index: 2;
-              width: 300px;
-       ">
 </body>
 	
 <style type="text/css">
@@ -53,10 +47,12 @@ canvas[resize] {
     height: 100%;
 }
 	
-img {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-image: url(grey.jpg);
+main {
+	display: inline-block;
+	vertical-align: middle;
+	background: url(grey.jpg);
+	padding:  100px;
+	max-width: 500px;
 }
 	
 </style>
@@ -72,7 +68,7 @@ $(document).ready(function() {
 			perturbance: 0.04,
 		});
 		
-		$('img').ripples({
+		$('main').ripples({
 			resolution: 512,
 			dropRadius: 20, //px
 			perturbance: 0.04,
