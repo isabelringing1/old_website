@@ -26,7 +26,7 @@
 </head>
    <body>
    </body>
-<div id="backgrounddiv" style="position:absolute; z-index:-1; background-image: url(bg.jpg); width: 100%; height: 100%; background-size:cover;">
+<div id="backgrounddiv" style="position:absolute; z-index:-1; width: 100%; height: 100%;">
   <canvas id="myCanvas" style = "background-image: url(bg.jpg); width: 100%; height: 100%; background-size:cover;"></canvas>
 </div>
 	
@@ -59,13 +59,7 @@ $(document).ready(function() {
 			resolution: 512,
 			dropRadius: 20, //px
 			perturbance: 0.04,
-		});
-		$('backgrounddiv').ripples({
-			resolution: 512,
-			dropRadius: 20, //px
-			perturbance: 0.04,
-		});
-		
+		});		
 	}
 	catch (e) {
 		$('.error').show().text(e);
