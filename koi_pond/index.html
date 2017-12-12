@@ -36,8 +36,7 @@ body {
     margin: 0;
     overflow: hidden;
     background-size: cover;
-    background-image: url(bg.jpg);
-    z-index: -4;
+    /*background-image: url(bg.jpg);*/
     background-color: rgba(0, 0, 0, 0.1);
     height: 100%;
 }
@@ -55,6 +54,11 @@ canvas [resize] {
 $(document).ready(function() {
 	try {
 		$('body').ripples({
+			resolution: 512,
+			dropRadius: 20, //px
+			perturbance: 0.04,
+		});
+		$('div').ripples({
 			resolution: 512,
 			dropRadius: 20, //px
 			perturbance: 0.04,
