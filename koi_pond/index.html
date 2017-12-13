@@ -39,6 +39,7 @@ body {
     background-size: cover;
     height: 100%;
     background-image: url(bg.jpg);
+    background-color:rgba(0, 0, 0, 0.5);
     background-size: cover;
     z-index: -10;
 }
@@ -63,13 +64,7 @@ $(document).ready(function() {
 			resolution: 512,
 			dropRadius: 20, //px
 			perturbance: 0.04,
-		});		
-		
-		$('imo').ripples({
-			resolution: 512,
-			dropRadius: 20, //px
-			perturbance: 0.04,
-		});		
+		});				
 	}
 	catch (e) {
 		$('.error').show().text(e);
