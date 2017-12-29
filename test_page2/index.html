@@ -76,16 +76,16 @@
 </script>
 </head>
 <body>
-<canvas id="myCanvas" style = "width: 700px; height: 200px; position: absolute;"></canvas>
+<canvas id="myCanvas" style = "width: 800px; height: 200px; position: absolute;"></canvas>
 <img src="name.png" style = "position: absolute; z-index: 1;">
 <img src="name1.png" style = "position: absolute; z-index: 1;" onmouseover="hide(this)" onmouseout="show(this)">
 
 <script>
 function hide(x) {
-    x.opacity = 0.0;
+    x.stlye.opacity = 0.0;
 }
 function show(x) {
-    x.opacity = 1.0;
+    x.style.opacity = 1.0;
 }
 </script>
 </body>
