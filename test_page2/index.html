@@ -74,6 +74,32 @@
 		color.destination = point + [radius, 0];
 	}
 </script>
+	
+	
+<script src="../js/glfx.js"></script>
+<script>
+
+window.onload = function() {
+    // try to create a WebGL canvas (will fail if WebGL isn't supported)
+    try {
+        var canvas = fx.canvas();
+    } catch (e) {
+        alert(e);
+        return;
+    }
+
+    // convert the image to a texture
+    var image = document.getElementById('image');
+    var texture = canvas.texture(image);
+
+    canvas.draw(texture).bulgePinch(445, 232.5, 200, 0.5).update();
+	
+    // replace the image with the canvas
+    image.parentNode.insertBefore(canvas, image);
+    image.parentNode.removeChild(image);
+};
+
+</script>
 </head>
 <body>
 <canvas id="myCanvas" style = "width: 800px; height: 200px; position: absolute;"></canvas>
@@ -90,6 +116,7 @@ function show(x) {
     console.log("mouseout");
 }
 </script>
+<img id="image" src="me.jpeg">
 </body>
 	
 </html>
