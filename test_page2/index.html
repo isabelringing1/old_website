@@ -91,7 +91,7 @@ window.onload = function() {
     var image = document.getElementById('image');
     var texture = canvas.texture(image);
 	
-    canvas.draw(texture).swirl(50, 50, 200, 4).update();
+    canvas.draw(texture).ink(0.25).update();
 	
     image.parentNode.insertBefore(canvas, image);
     image.parentNode.removeChild(image);
