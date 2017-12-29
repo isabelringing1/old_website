@@ -75,7 +75,6 @@
 	}
 </script>
 	
-	
 <script src="../js/glfx.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js">
 
@@ -91,7 +90,9 @@ window.onload = function() {
     // convert the image to a texture
     var image = document.getElementById('image');
     var texture = canvas.texture(image);
-    canvas.draw(texture).update().replace(image);
+    image.parentNode.insertBefore(canvas, image);
+    image.parentNode.removeChild(image);
+
 
     // Draw a swirl under the mouse
     $(document).mousemove(function(e) {
