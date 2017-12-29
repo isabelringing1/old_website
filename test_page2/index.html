@@ -91,8 +91,6 @@ window.onload = function() {
     // convert the image to a texture
     var image = document.getElementById('image');
     var texture = canvas.texture(image);
-
-    var texture = canvas.texture(image);
     canvas.draw(texture).update().replace(image);
 
     // Draw a swirl under the mouse
