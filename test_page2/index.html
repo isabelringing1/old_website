@@ -92,11 +92,16 @@ window.onload = function() {
     var image = document.getElementById('image');
     var texture = canvas.texture(image);
 
-    canvas.draw(texture).bulgePinch(445, 232.5, 200, 0.5).update();
-	
-    // replace the image with the canvas
-    image.parentNode.insertBefore(canvas, image);
-    image.parentNode.removeChild(image);
+    var texture = canvas.texture(image);
+    canvas.draw(texture).update().replace(image);
+
+    // Draw a swirl under the mouse
+    $(document).mousemove(function(e) {
+        var offset = $(canvas).offset();
+        var x = e.pageX - offset.left;
+        var y = e.pageY - offset.top;
+        canvas.draw(texture).swirl(x, y, 200, 4).update();
+    });
 };
 
 </script>
