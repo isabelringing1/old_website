@@ -95,6 +95,7 @@ window.onload = function() {
 
     // Draw a swirl under the mouse
     $(document).mousemove(function(e) {
+	console.log("move");
         var offset = $(canvas).offset();
         var x = e.pageX - offset.left;
         var y = e.pageY - offset.top;
