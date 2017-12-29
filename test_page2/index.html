@@ -1,136 +1,87 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<title>Test Fit Bot</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script type="text/javascript">
-		var accessToken = "29a3088146f041e7b606659c2ac7d55b";
-		var baseUrl = "https://api.api.ai/v1/";
-		var txt = "";
-	$(document).ready(function() {
-			setResponse("Bot: Welcome to SpaceHQ's Test Fit Tool! Type START to begin.");
-			$("#input").keypress(function(event) {
-				if (event.which == 13) {
-					event.preventDefault();
-					send();
-				}
-			});
-			$("#rec").click(function(event) {
-				switchRecognition();
-			});
-			$("#button").click(function(event){
-				event.preventDefault();
-				send();	
-			});
-			
-		});
-		var recognition;
-		function startRecognition() {
-			recognition = new webkitSpeechRecognition();
-			recognition.onstart = function(event) {
-				updateRec();
-			};
-			recognition.onresult = function(event) {
-				
-			    for (var i = event.resultIndex; i < event.results.length; ++i) {
-			    	text += event.results[i][0].transcript;
-			    }
-			    setInput(text);
-				stopRecognition();
-			};
-			recognition.onend = function() {
-				stopRecognition();
-			};
-			recognition.lang = "en-US";
-			recognition.start();
-		}
-	
-		function stopRecognition() {
-			if (recognition) {
-				recognition.stop();
-				recognition = null;
-			}
-			updateRec();
-		}
-		function switchRecognition() {
-			if (recognition) {
-				stopRecognition();
-			} else {
-				startRecognition();
-			}
-		}
-		function setInput(text) {
-			$("#input").val(text);
-			send();
-		}
-		function updateRec() {
-			$("#rec").text(recognition ? "Stop" : "Speak");
-		}
-		function clearField() {
-			 $("#input").val("");
+<script type="text/javascript" src="js/paper-full.js"></script>
+<script type="text/paperscript" canvas="myCanvas">
+	var point = view.center;
+	var colors = [];
+	var cycles = 4;
+	for (var i = 0, l = 60; i < l; i++) {
+		var brightness = 1 - (i / l) * 1.5;
+		var hue = i / l * cycles * 360;
+		var color = {
+			hue: hue,
+			saturation: 1,
+			brightness: brightness
 		};
-		
-		var dta = "Welcome to SpaceHQ's Test Fit Tool! Type START to begin.";
-		function send() {
-			var text = $("#input").val();
-			$.ajax({
-				type: "POST",
-				url: baseUrl + "query/",
-				contentType: "application/json; charset=utf-8",
-				dataType: "json",
-				headers: {
-					"Authorization": "Bearer " + accessToken
-				},
-				data: JSON.stringify({ q: text, lang: "en" }),
-				success: function(data) {
-					getLast();
-					dta = data.result.speech;
-					setResponse("Bot: " + dta + "\n\n" + txt);
-				},
-				error: function() {
-					setResponse("Internal Server Error");
-				}
-			});
-		}
-		function getLast(){
-			txt = "You: " + document.getElementById("input").value + "\nBot: " + dta + "\n" + txt;
-		}
-		
-		function setResponse(val) {
-			$("#response").text(val);
-			clearField();
-		}
-	</script>
-	<style type="text/css">
-		body { width: 500px; margin: 0 auto; text-align: center; margin-top: 20px; }
-		div {  position: absolute; }
-		input { width: 400px; }
-		button { width: 50px; }
-		textarea { width: 100%; }
-	</style>
-	<style>
-		#myDIV {
-    			height: 250px;
-    			width: 500 px;
-    			overflow: auto;
+		colors.push(color);
+	}
+
+	var radius = Math.max(view.size.width, view.size.height) * 0.75;
+
+	var path = new Path.Rectangle({
+		rectangle: view.bounds,
+		fillColor: {
+			origin: point,
+			destination: point + [radius, 0],
+			gradient: {
+				stops: colors,
+				radial: true
 			}
-			
-		#content {
-			 height: 800px;
-    			width: 2000px;
-			 background-color: blue;
-			}
-	</style>
+		}
+	});
+
+	var color = path.fillColor;
+	var gradient = color.gradient;
+	var mouseDown = false;
+	var mousePoint = view.center;
+
+	function onMouseDown(event) {
+		mouseDown = true;
+		mousePoint = event.point;
+	}
+
+	function onMouseDrag(event) {
+		mousePoint = event.point;
+	}
+
+	function onMouseUp(event) {
+		vector.length = 10;
+		mouseDown = false;
+	}
+
+	var grow = false;
+	var vector = new Point(0, 0);
+
+	function onFrame() {
+		for (var i = 0, l = gradient.stops.length; i < l; i++)
+			gradient.stops[i].color.hue -= 20;
+		if (grow && vector.length > 300) {
+			grow = false;
+		} else if (!grow && vector.length < 75) {
+			grow = true;
+		}
+		if (mouseDown) {
+			point = point + (mousePoint - point) / 10;
+		} else {
+			vector.length += (grow ? 0 : 0);
+			vector.angle += 5;
+		}
+		color.highlight = mouseDown ? point : point + vector;
+	}
+
+	function onResize(event) {
+		point = view.center;
+		path.bounds = view.bounds;
+		var color = path.fillColor;
+		color.origin = point;
+		var radius = Math.max(view.size.width, view.size.height) * 0.75;
+		color.destination = point + [radius, 0];
+	}
+</script>
 </head>
 <body>
-	<div>
-		
-		<input id="input" type="text"> <button id="button">Send</button><br><br>
-		<textarea id="response" cols="45" rows="20"><font size="10"></font></textarea>
-		
-  		
-
-<p id="demo"></p>
-	</div>
+<canvas id="myCanvas" style = "width: 100%; height: 100%;"></canvas>
 </body>
+	
 </html>
