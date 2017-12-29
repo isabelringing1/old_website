@@ -91,7 +91,7 @@ window.onload = function() {
     var image = document.getElementById('image');
     var texture = canvas.texture(image);
 	
-    canvas.draw(texture).ink(0.25).update();
+    canvas.draw(texture).bulgePinch(320, 239.5, 200, 0.5).update();
 	
     image.parentNode.insertBefore(canvas, image);
     image.parentNode.removeChild(image);
