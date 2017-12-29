@@ -90,9 +90,11 @@ window.onload = function() {
     // convert the image to a texture
     var image = document.getElementById('image');
     var texture = canvas.texture(image);
-	
-    canvas.draw(texture).bulgePinch(320, 239.5, 200, 0.5).update();
-	
+
+    // apply the ink filter
+    canvas.draw(texture).swirl(320, 239.5, 200, 3).update();
+
+    // replace the image with the canvas
     image.parentNode.insertBefore(canvas, image);
     image.parentNode.removeChild(image);
 
