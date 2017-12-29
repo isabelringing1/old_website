@@ -36,17 +36,12 @@
 	var mouseDown = false;
 	var mousePoint = view.center;
 
-	function onMouseDown(event) {
+	function onMouseMove(event) {
 		mouseDown = true;
 		mousePoint = event.point;
 	}
 
-	function onMouseDrag(event) {
-		mousePoint = event.point;
-	}
-
 	function onMouseUp(event) {
-		vector.length = 10;
 		mouseDown = false;
 	}
 
