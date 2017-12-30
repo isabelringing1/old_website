@@ -120,12 +120,18 @@ function show(x) {
   height: 460px;
   background-repeat:no-repeat;
 }	
+	
+p {
+    font-family: "Courier", Courier, monospace;
+}
 </style>
 	
 <body>
 <canvas id="myCanvas" style = "width: 800px; height: 200px; position: absolute;"></canvas>
 <img src="name.png" style = "position: absolute; z-index: 1;">
 <img src="name1.png" style = "position: absolute; z-index: 1;" onmouseover="hide(this)" onmouseout="show(this)">
-</body>
+	<p> I'm Isabel and I'm currently a student at Yale Universtiy.</p>
 <img id="image" class="ripples-image" src="me.jpeg" style = "height: 300px;">
+</body>
+
 </html>
