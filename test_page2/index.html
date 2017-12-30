@@ -84,7 +84,12 @@ $(document).ready(function() {
 			resolution: 512,
 			dropRadius: 20, //px
 			perturbance: 0.04,
-		});		
+		});
+		$('photo').ripples({
+			resolution: 512,
+			dropRadius: 20, //px
+			perturbance: 0.04,
+		});
 	}
 	catch (e) {
 		$('.error').show().text(e);
@@ -108,5 +113,6 @@ function show(x) {
 <img src="name1.png" style = "position: absolute; z-index: 1;" onmouseover="hide(this)" onmouseout="show(this)">
 </body>
 <img id="image" src="me.jpeg" style = "width: 460px; height: 460px; padding-top: 250px;">
+<canvas id="photo" style = "background-image: url("me.jpeg");"></canvas>
 
 </html>
