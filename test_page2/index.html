@@ -79,19 +79,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.4.2/jquery.ripples.js"></script>
 
 <script>
-$(document).ready(function() {
-	try {
-		$('image').ripples({
-			resolution: 512,
-			dropRadius: 20, //px
-			perturbance: 0.04,
-		});
-	}
-	catch (e) {
-		$('.error').show().text(e);
-	}
-});
-	
 $(window).load(function() {
   $('img.ripples-image').each(function() {
     $image = $(this);
@@ -130,6 +117,9 @@ function show(x) {
   z-index:10;
   top:0;
   left:0;
+  width: 460px;
+  height: 460px;
+  padding-top: 250px;
   background-repeat:no-repeat;
 }	
 </style>
@@ -139,5 +129,5 @@ function show(x) {
 <img src="name.png" style = "position: absolute; z-index: 1;">
 <img src="name1.png" style = "position: absolute; z-index: 1;" onmouseover="hide(this)" onmouseout="show(this)">
 </body>
-<img id="image" class="ripples-image" src="me.jpeg" style = "width: 460px; height: 460px; padding-top: 250px;">
+<img id="image" class="ripples-image" src="me.jpeg" style = "width: 460px; height: 460px;">
 </html>
