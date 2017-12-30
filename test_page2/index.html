@@ -75,41 +75,21 @@
 	}
 </script>
 	
-<script src="../js/glfx.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.0.min.js">
-
-window.onload = function() {
-    // try to create a WebGL canvas (will fail if WebGL isn't supported)
-    try {
-        var canvas = fx.canvas();
-    } catch (e) {
-        alert(e);
-        return;
-    }
-
-    // convert the image to a texture
-    var image = document.getElementById('image');
-    var texture = canvas.texture(image);
-
-    // apply the ink filter
-    canvas.draw(texture).swirl(320, 239.5, 200, 3).update();
-
-    // replace the image with the canvas
-    image.parentNode.insertBefore(canvas, image);
-    image.parentNode.removeChild(image);
-
-
-    // Draw a swirl under the mouse 
-   /*
-   $(document).mousemove(function(e) {
-	console.log("move");
-        var offset = $(canvas).offset();
-        var x = e.pageX - offset.left;
-        var y = e.pageY - offset.top;
-        canvas.draw(texture).swirl(x, y, 200, 4).update();
-    });
-};
-*/
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="../koi_pond/js/ripples.js"></script>
+<script>
+$(document).ready(function() {
+	try {
+		$('image').ripples({
+			resolution: 512,
+			dropRadius: 20, //px
+			perturbance: 0.04,
+		});		
+	}
+	catch (e) {
+		$('.error').show().text(e);
+	}
+});
 </script>
 	
 <script>
