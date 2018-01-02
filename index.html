@@ -1,19 +1,109 @@
----
-layout: default
-title: Isabel Lee
----
-<div class="blurb">
-	<div class="col-sm-4">
-	<h1>About Me</h1>
-	</div>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Isabel Lee</title>
+<script type="text/javascript" src="/koi_pond/js/paper-full.js"></script>
+<script type="text/paperscript" canvas="myCanvas">
+	var point = view.center;
+	var colors = [];
+	var cycles = 4;
+	for (var i = 0, l = 60; i < l; i++) {
+		var brightness = 1 - (i / l) * 1.5;
+		var hue = i / l * cycles * 360;
+		var color = {
+			hue: hue,
+			saturation: 1,
+			brightness: brightness
+		};
+		colors.push(color);
+	}
+
+	var radius = Math.max(view.size.width, view.size.height) * 0.75;
+
+	var path = new Path.Rectangle({
+		rectangle: view.bounds,
+		fillColor: {
+			origin: point,
+			destination: point + [radius, 0],
+			gradient: {
+				stops: colors,
+				radial: true
+			}
+		}
+	});
+
+	var color = path.fillColor;
+	var gradient = color.gradient;
+	var mouseDown = false;
+	var mousePoint = view.center;
+
+	function onMouseMove(event) {
+		mouseDown = true;
+		mousePoint = event.point;
+	}
+
+	function onMouseUp(event) {
+		mouseDown = false;
+	}
+
+	var grow = false;
+	var vector = new Point(0, 0);
+
+	function onFrame() {
+		for (var i = 0, l = gradient.stops.length; i < l; i++)
+			gradient.stops[i].color.hue -= 20;
+		if (grow && vector.length > 300) {
+			grow = false;
+		} else if (!grow && vector.length < 75) {
+			grow = true;
+		}
+		if (mouseDown) {
+			point = point + (mousePoint - point) / 10;
+		} else {
+			vector.length += (grow ? 0 : 0);
+			vector.angle += 5;
+		}
+		color.highlight = mouseDown ? point : point + vector;
+	}
+
+	function onResize(event) {
+		point = view.center;
+		path.bounds = view.bounds;
+		var color = path.fillColor;
+		color.origin = point;
+		var radius = Math.max(view.size.width, view.size.height) * 0.75;
+		color.destination = point + [radius, 0];
+	}
+	</script>
 	
-	<img src="me.jpg" alt="Isabel Lee" style="float:right;width:450px;height:292px;border-radius:25px; padding:10px">
-	<p>My name is Isabel Lee, and this is where you'll be able to see all the cool stuff I've been doing! A good place to start is in my <a href="/portfolio">portfolio</a>.
-	<br><br>
-	I am a freshman at Yale University, where I am studying computer science and astrophysics.
-	<br><br>
-	I also write a blog about college life- <a href="https://theisabelinitiative.wordpress.com">The Isabel Initiative</a>.
-	<br><br>
-	My personal github is  <a href="https://github.com/isabelringing1">github.com/isabelringing1.</p>
+<script>
+function hide(x) {
+    x.style.opacity = 0.0;
+}
+function show(x) {
+    x.style.opacity = 1.0;
+}
+</script>
+</head>
 	
-</div><!-- /.blurb -->
+<style>	
+	
+p {
+    font-family: "Courier", Courier, monospace;
+    font-size: 24px;
+}
+</style>
+	
+<body>
+<canvas id="myCanvas" style = "width: 800px; height: 200px; position: absolute;"></canvas>
+<img id="image" src="me.jpeg" style="height: 350px; width:350px; float:right; padding-top:40px; padding-right:180px;">
+<img src="name.png" style = "position: absolute; z-index: 1;">
+<img src="name1.png" style = "position: absolute; z-index: 1;" onmouseover="hide(this)" onmouseout="show(this)">
+	<p style = "padding-top: 200px; padding-left: 40px; width: 800px;"> I'm currently a student at Yale University studying Computer Science. I also have interests in <a style="color: #000c51" href="/writing">writing</a>, <a style="color: #000c51" href="https://isabeldraws.tumblr.com">art</a>, and aerospace. 
+		Making <a style="color: #000c51" href="/games">video games</a> is a bit of a hobby of mine. I love to create new things with different people, so please feel free to reach out and say hi!</p>
+	<p style = "padding-left: 40px;"> Check out my personal <a style="color: #000c51" href="https://github.com/isabelringing1">github</a> or <a style="color: #000c51" href="https://devpost.com/isabelringing1">devpost</a>.
+		<br><br>Read my <a style="color: #000c51" href="https://drive.google.com/a/yale.edu/file/d/0BzSaINUGLNrhWDJpMUhMYXBDSWM/view?usp=sharing"> resume</a>.
+		<br><br>Contact me <a style="color: #000c51" href="mailto:isabelringing1@gmail.com">here</a>.</p>
+	</body>
+
+</html>
